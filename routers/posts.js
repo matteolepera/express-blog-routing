@@ -5,7 +5,16 @@ const router = express.Router();
 
 //INDEX
 router.get("/", (req, res) => {
-    res.send("Lista vittorie ferrari")
+    const response = {
+        info: {
+            totalWins: ferrariWins.length,
+            leclerWins: driverTotalWin("Leclerc"),
+            sainzWins: driverTotalWin("Sainz"),
+        },
+        results: ferrariWins,
+    }
+
+    res.json(response);
 })
 //SHOW
 router.get("/:id", (req, res) => {
@@ -28,6 +37,17 @@ router.delete("/:id", (req, res) => {
     res.send("Elimina una vittoria ferrari")
 })
 
+function driverTotalWin(name) {
+    let count = 0;
+    ferrariWins.forEach(win => {
+        win.tags.forEach(tag => {
+            if (tag === name) {
+                count++;
+            }
+        })
+    })
+    return count;
+}
 
 
 export default router;
