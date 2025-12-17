@@ -81,4 +81,13 @@ const ferrariWins = [
     }
 ];
 
-export { ferrariWins };
+const models = [];
+
+ferrariWins.forEach(win => {
+    if (!models.includes(win.modello)) {
+        models.push(win.modello)
+    }
+
+});
+
+export { ferrariWins, models };
