@@ -18,7 +18,9 @@ router.get("/", (req, res) => {
 })
 //SHOW
 router.get("/:id", (req, res) => {
-    res.send("Singola vittoria ferrari")
+    const id = parseInt(req.params.id);
+    const response = (ferrariWins.find(win => win.id === id))
+    res.json(response);
 })
 //STORE
 router.post("/", (req, res) => {
